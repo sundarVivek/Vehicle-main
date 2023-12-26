@@ -1,0 +1,40 @@
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Customer name</th>
+                <th scope="col">Vehicle No</th>
+                <th scope="col">Service Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let service of serviceData">
+                <th scope="row">{{service.id}}</th>
+                <td>{{service.customer_name}}</td>
+                <td>{{service.vehicle_no}}</td>
+                <td>{{service.service_type}}</td>
+                <td *ngIf="showBtn">
+                    <div class="detailsbtn">
+                        <button type="button" (click)="details(service.id)" class="btn btn-primary">Details</button>
+                    </div>
+    
+    
+                </td>
+                <td *ngIf="showBtn">
+                    <div class="editbtn">
+                        <button type="button" (click)="editService(service.id)" class="btn btn-success">Edit</button>
+    
+                    </div>
+    
+                </td>
+                <td *ngIf="showBtn">
+                    <div class="deletebtn">
+                        <button type="button" (click)="deleteService(service.id)" class="btn btn-danger">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>

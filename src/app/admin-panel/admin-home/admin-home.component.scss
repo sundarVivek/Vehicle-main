@@ -1,0 +1,77 @@
+.btn-circle {
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+
+.container {
+    margin-left: 263px;
+    margin-top: 142px;
+    display: inline-flex;
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100vw;
+    /* 100% of viewport width */
+    height: 100vh;
+}
+
+.logoutbtn {
+    margin-top: 30px;
+    margin-left: 1300px;
+}
+
+.navbar {
+    background-color: #eb3941 !important;
+}
+
+.card {
+    width: 300px;
+    height: 150px;
+    margin-left: 50px;
+    box-shadow: 0px 0px 6px #6c757d !important;
+}
+
+.card1 {
+    background-color: #000;
+}
+
+.card2 {
+    background-color: #000;
+}
+
+.card3 {
+    background-color: #000;
+}
+
+.btnDrpdown {
+    font-size: 12px;
+    margin-left: 200px;
+    background-color: black;
+    border-color: #212121 !important;
+}
+
+#count {
+    color: white;
+    text-align: center;
+}
+
+#text {
+    color: green;
+    text-align: center;
+}
+
+.heading {
+    margin-bottom: 30px;
+    position: absolute;
+}
+
+.chartContainer {
+    margin-left: 263px;
+    width: 500px;
+}

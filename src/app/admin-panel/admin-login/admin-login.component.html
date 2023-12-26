@@ -1,0 +1,50 @@
+
+  <body>
+    <section class="h-100 gradient-form" style="background-color: black;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+              <div class="card rounded-3 text-black">
+                <div class="row g-0">
+                  <div class="col-lg-6">
+                    <div class="card-body p-md-5 mx-md-4">
+                      <div class="text-center">
+                        <div class="col-md-8 col-lg-7 col-xl-6">
+                            <img src="assets\images\yamaha-logo-3860.png"
+                              class="img-fluid" alt="Phone image">
+                          </div>
+                      </div>
+                      <form [formGroup]="adminLogin">
+                        <p class="text">Please login to your account</p>
+                        <div class="form-outline mb-4">
+                          <input type="email" id="form2Example11" class="form-control"
+                            placeholder="Username" formControlName="username" />
+                          <!-- <label class="form-label" for="form2Example11">Username</label> -->
+                        </div>
+                        <div class="form-outline mb-4">
+                          <input type="password" placeholder="Password" id="form2Example22" class="form-control" formControlName="password" />
+                          <!-- <label class="form-label" for="form2Example22">Password</label> -->
+                        </div>
+                        <div class="text-center pt-1 mb-5 pb-1">
+                          <button class="btn btn-danger btn-block fa-lg gradient-custom-2 mb-3" type="button">LOGIN</button>
+                          <!-- <a class="text" href="#!">Forgot password?</a> -->
+                        </div>
+                        <!-- <div class="d-flex align-items-center justify-content-center pb-4">
+                          <p class="mb-0 me-2 text">Don't have an account?</p>
+                          <button type="button" (click)="adminRegister()" class="btn btn-outline-danger">Create new</button>
+                        </div> -->
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                      <p class="small mb-0 text">This login page is exclusively for authorized administrators. Unauthorized access is strictly prohibited and may result in legal action. By proceeding, you acknowledge that you are an authorized administrator and are accessing this system in accordance with company policies.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </body>

@@ -1,0 +1,27 @@
+.deletebtn{
+    margin-left: -192px;
+}
+.editbtn{
+    margin-left: -122px;
+
+}
+.detailsbtn{
+    margin-left: -51px;
+}
+body{
+    //margin: auto 10px;
+    width: auto;
+    // height: 1000px;
+    background-color: black;
+    position: static;
+    //height: fit-content;
+}
+tbody, td, tfoot, th, thead, tr {
+    padding-left: 158px;
+    padding-bottom: 50px;
+    color: white;
+}
+table{
+    box-shadow: 1px -1px 14px grey;
+    margin-top: 52px;
+}
