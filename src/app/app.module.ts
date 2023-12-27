@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //material
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { TrackVehicleComponent } from './customer-panel/track-vehicle/track-vehicle.component';
 import { AdminHomeComponent } from './admin-panel/admin-home/admin-home.component';
 import { AddServiceComponent } from './admin-panel/admin-home/add-service/add-service.component';
@@ -18,9 +17,7 @@ import { RegisterComponent } from './user/login/register/register.component';
 import { ViewServiceComponent } from './admin-panel/view-service/view-service.component';
 import { EditServiceComponent } from './admin-panel/edit-service/edit-service.component';
 import { ToastrModule } from 'ngx-toastr';
-import {CdkTableModule} from '@angular/cdk/table';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatTableModule } from '@angular/material/table';
+// import {CdkTableModule} from '@angular/cdk/table';
 import { SelectUserComponent } from './select-user/select-user.component';
 import { SidebarComponent } from './admin-panel/sidebar/sidebar.component';
 import { AddCustomerComponent } from './admin-panel/add-customer/add-customer.component';
