@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-admin-registration',
@@ -7,19 +9,49 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./admin-registration.component.scss']
 })
 export class AdminRegistrationComponent {
-  adminLogin!: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  adminRegister!: FormGroup;
+  submitted= false;
+  constructor(private fb: FormBuilder,
+     private adminService:AdminService,
+     private route:Router) { }
   ngOnInit() {
-    this.adminLogin = this.fb.group({
+    this.adminRegister = this.fb.group({
       username: ['', Validators.required],
-      access_key: ['', Validators.required],
-      company_email: ['', Validators.email],
-      password: ['', Validators.required],
+      // access_key: ['', Validators.required],
+      email: ['', Validators.email],
+      password: ['', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(10)])],
       confirm_password: ['', Validators.required],
-      phone_number: ['', Validators.required],
-    })
+      phone: ['', Validators.required],
+    },
+    { validator: this.passwordMatchValidator }
+    );
   }
-  onSubmit() {
+  get f(){
+    return this.adminRegister.controls;
+  }
+   // Function to check if passwords match
+    passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirm_password');
+  
+    // Check if both passwords are present and match
+    return password && confirmPassword && password.value !== confirmPassword.value
+      ? { 'passwordMismatch': true }: null;
+  }
 
+  onSubmit() {
+    if(this.adminRegister.valid){
+      this.adminService.postAdmin(this.adminRegister.value).subscribe(
+        (result:any)=>{
+          console.log(result);
+          alert('registration successful');
+       this.route.navigate(['/admin-login']);
+        }
+      ),
+      (error:any) => {
+        // Handle error
+        console.error(error);
+    };
+    }
   }
 }

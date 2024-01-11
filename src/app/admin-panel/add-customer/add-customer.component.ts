@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth.service';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -16,13 +17,12 @@ export class AddCustomerComponent {
   submitted = false;
   errorMessage=null;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private route: Router, private toastr:ToastrService) { }
+  constructor(private fb: FormBuilder, private customerService: CustomerService, private route: Router, private toastr:ToastrService) { }
   ngOnInit() {
     this.customerForm = this.fb.group({
       Name: ['', Validators.required],
       Contact: ['', Validators.required],
       VehilceNo: ['', Validators.required],
-      Role: ['customer']
     })
   }
   get f(){
@@ -32,9 +32,9 @@ export class AddCustomerComponent {
   onSubmit() {
     if(this.customerForm.valid){
         // )
-        this.auth.postUser(this.customerForm.value).subscribe(
+        this.customerService.postCustomer(this.customerForm.value).subscribe(
           result=>{
-            alert('registration successful');
+            alert('customer added successful');
          this.route.navigate(['/add-service']);
           }
         );

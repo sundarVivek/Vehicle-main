@@ -15,17 +15,17 @@ export class AddServiceComponent {
 
   ngOnInit() {
     this.addServiceForm = this.fb.group({
-      customer_name: ['',Validators.compose([Validators.required,Validators.minLength(2)]) ],
-      contact: ['', Validators.required],
-      vehicle_no: ['', Validators.required],
-      model_name: ['', Validators.required],
-      appointment_date: ['', Validators.required],
-      service_type: ['', Validators.required],
-      radiobutton: ['', Validators.required],
-      complaintbox1: ['', Validators.required],
-      complaintbox2: ['', Validators.required],
-      complaintbox3: ['', Validators.required],
-      complaintbox4: ['', Validators.required],
+      customer_name: ['',Validators.compose([Validators.required,Validators.minLength(2)])],
+      contact: ['',Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])],
+      VehicleNo: ['',Validators.compose([Validators.required,Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')])],
+      model_name: ['',Validators.required],
+      appointment_date: ['',Validators.required],
+      service_type: ['',Validators.required],
+      radiobutton: ['',Validators.required],
+      complaintbox1: [''],
+      complaintbox2: [''],
+      complaintbox3: [''],
+      complaintbox4: [''],
     });
   }
   get f(){
@@ -54,14 +54,18 @@ export class AddServiceComponent {
     }
   }
   onSubmit() {
+    console.log(this.addServiceForm.valid);
     this.submitted=true;
     if (this.addServiceForm.valid) {
-      console.log(this.addServiceForm.value);
-      this.servicedata.sendServiceData(this.addServiceForm.value).subscribe(res=>{
-        alert('data added successfully')
-      });
+      this.servicedata.postVehicleService(this.addServiceForm.value).subscribe((res:any)=>{
+        alert('service added successfully')
+      },
+      (error:any)=>{
+        console.log(error);
 
-    }
+    })
 
   }
+}
+
 }

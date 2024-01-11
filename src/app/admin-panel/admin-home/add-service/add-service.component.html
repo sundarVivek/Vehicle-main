@@ -7,29 +7,40 @@
   <form class="col-md-6" [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">CUSTOMER NAME</label>
-      <input type="text" class="form-control" id="inputEmail4" formControlName="customer_name" [ngClass]="{ 'borderRed': f['customer_name'].invalid && f['customer_name'].touched||submitted  }">
-      <span class="errorMessage" *ngIf="f['customer_name'].touched&&f['customer_name'].errors?.['required']">Please fill this field !</span>
-      <span class="errorMessage" *ngIf="submitted&&f['customer_name'].errors?.['required']">Please fill this field !</span>
+      <input type="text" class="form-control" id="inputEmail4" formControlName="customer_name">
+      <span class="errorMessage" *ngIf="addServiceForm.get('customer_name')?.hasError('required') && addServiceForm.get('customer_name')?.touched">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="addServiceForm.get('customer_name')?.hasError('minlength') && addServiceForm.get('customer_name')?.touched">
+        Name must be at least 2 characters long.
+      </span>
     </div>
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">CONTACT</label>
       <input type="number" class="form-control" id="inputEmail4" formControlName="contact">
-      <span *ngIf="">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="addServiceForm.get('contact')?.hasError('required') && addServiceForm.get('contact')?.touched">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="addServiceForm.get('contact')?.hasError('minlength') && addServiceForm.get('contact')?.touched&& addServiceForm.get('contact')?.hasError('maxlength') && addServiceForm.get('contact')?.touched">
+        Contact must be in 1o numbers
+      </span>
     </div>
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">VEHICLE NO</label>
-      <input type="text" class="form-control" id="inputPassword4" formControlName="vehicle_no">
-      <span *ngIf="">Please fill this field !</span>
+      <input type="text" class="form-control" id="inputPassword4" formControlName="VehicleNo">
+      <span class="errorMessage" *ngIf="addServiceForm.get('VehicleNo')?.hasError('required') && addServiceForm.get('VehicleNo')?.touched">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="addServiceForm.get('VehicleNo')?.hasError('pattern') && addServiceForm.get('VehicleNo')?.touched">
+        Vehicle number must be in (TN 01 we 9457)
+      </span>
     </div>
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">MODEL NAME</label>
       <input type="text" class="form-control" id="inputPassword4" formControlName="model_name">
-      <span *ngIf="">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="addServiceForm.get('model_name')?.hasError('required') && addServiceForm.get('model_name')?.touched">Please fill this field !</span>
+      <!-- <span class="errorMessage" *ngIf="addServiceForm.get('model_name')?.hasError('minlength') && addServiceForm.get('model_name')?.touched">
+        Name must be at least 2 characters long.
+      </span> -->
     </div>
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">APPOINTMENT DATE</label>
       <input type="date" class="form-control" id="inputPassword4" formControlName="appointment_date">
-      <span *ngIf="">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="addServiceForm.get('appointment_date')?.hasError('required') && addServiceForm.get('appointment_date')?.touched">Please fill this field !</span>
     </div>
     <!-- <div class="col-md-6">
       <label for="inputPassword4" class="form-label">SERVICE TYPE</label>
@@ -38,12 +49,11 @@
     <div class="col-md-6">
       <label for="inputState" class="form-label">Service Type</label>
       <select id="inputState" class="form-select" formControlName="service_type">
-        <span *ngIf=""></span>
         <option>Select</option>
-        <option>Free service</option>
-        <option>Paid service</option>
+        <option value="free_service">Free service</option>
+        <option value="paid_service">Paid service</option>
       </select>
-      <span *ngIf="">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="addServiceForm.get('service_type')?.hasError('required') && addServiceForm.get('service_type')?.touched">Please fill this field !</span>
     </div>
     <div class="radioLabel">
       <label class="form-label">DO YOU HAVE ANY COMPLAINT?</label>
@@ -51,13 +61,13 @@
     <div class="complaint">
       <div class="radioContainer">
         <div class="form-check">
-          <input (change)="changeRadio()" class="form-check-input" type="radio" value="" id="flexCheckDefault" formControlName="radiobutton" value="yes">
+          <input (change)="changeRadio()" class="form-check-input" type="radio" id="flexCheckDefault" formControlName="radiobutton" value="yes">
           <label class="form-check-label" for="flexCheckDefault">
             Yes
           </label>
         </div>
         <div class="form-check">
-          <input  (change)="changeRadio()"  class="form-check-input" type="radio" value="" id="flexCheckDefault" formControlName="radiobutton" value="no">
+          <input  (change)="changeRadio()"  class="form-check-input" type="radio" id="flexCheckDefault" formControlName="radiobutton" value="no">
           <label class="form-check-label" for="flexCheckDefault">
             No
           </label>
@@ -85,10 +95,8 @@
           <input type="text" class="form-control" id="inputPassword4" formControlName="complaintbox4">
         </div>
       </div>
-      <span *ngIf="">Please fill this field !</span>
+      <span class="errorMessage" *ngIf="submitted&&addServiceForm.get('radiobutton')?.hasError('required')">Please fill this field !</span>
       </div>
-      
-
     <div class="col-12">
       <button type="submit" class="btn btn-danger">ADD SERVICE</button>
     </div>

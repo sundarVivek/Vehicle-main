@@ -14,8 +14,7 @@
                               class="img-fluid" alt="Phone image">
                           </div>
                       </div>
-                      <form [formGroup]="adminLogin">
-                        <p class="text">Please login to your account</p>
+                      <form [formGroup]="adminLogin" (ngSubmit)="onSubmit()">
                         <div class="form-outline mb-4">
                           <input type="email" id="form2Example11" class="form-control"
                             placeholder="Username" formControlName="username" />
@@ -25,9 +24,13 @@
                           <input type="password" placeholder="Password" id="form2Example22" class="form-control" formControlName="password" />
                           <!-- <label class="form-label" for="form2Example22">Password</label> -->
                         </div>
+                        <span class="error-message" *ngIf="submitted&&adminLogin.invalid">Please provide valid credentials </span>
                         <div class="text-center pt-1 mb-5 pb-1">
-                          <button class="btn btn-danger btn-block fa-lg gradient-custom-2 mb-3" type="button">LOGIN</button>
+                          <button class="btn btn-danger btn-block fa-lg gradient-custom-2 mb-3" type="submit">LOGIN</button>
                           <!-- <a class="text" href="#!">Forgot password?</a> -->
+                        </div>
+                        <div>
+                          <h1 class="text">{{errorMessage}}</h1>
                         </div>
                         <!-- <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2 text">Don't have an account?</p>

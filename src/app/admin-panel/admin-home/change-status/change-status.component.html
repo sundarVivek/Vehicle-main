@@ -5,49 +5,54 @@
       <img src="assets\images\yamaha-logo-3860.png" class="img-fluid" alt="Phone image">
     </div>
   </nav> -->
-  <table class="table">
-    <tr>
-      <th class="heading gradient-custom-2">ID</th>
-      
-      <td>{{serviceId}}</td>
-    </tr>
-    <tr>
-      <th class="heading gradient-custom-2">Vehicle No</th>
-      <td>{{vehicleNo}}</td>
+  <div class="row">
+    <div class="column">
+      <table class="table">
+        <tr>
+          <th class="heading gradient-custom-2">ID</th>
+          
+          <td>{{serviceId}}</td>
+        </tr>
+        <tr>
+          <th class="heading gradient-custom-2">Vehicle No</th>
+          <td>{{vehicleNo}}</td>
+    
+        </tr>
+        <tr>
+          <th class="heading gradient-custom-2">Owner</th>
+          <td>{{owner}}</td>
+    
+        </tr>
+        <tr>
+          <th class="heading gradient-custom-2">Model</th>
+          <td>{{model}}</td>
+        </tr>
+        <tr>
+          <th class="heading gradient-custom-2">Appointment Date</th>
+          <td>{{date}}</td>
+        </tr>
+        <tr>
+          <th class="heading gradient-custom-2">Contact</th>
+          <td>{{contact}}</td>
+        </tr>
+        <tr>
+          <th class="heading gradient-custom-2">Service type</th>
+          <td>{{serviceType}}</td>
+        </tr>
+        <tr>
+          <th class="heading gradient-custom-2">Service status</th>
+          <td>  
+            <div class="statusContainer">
+            <select class="status">
+              <option class="text">Ready for service</option>
+              <option class="text">Service in progress</option>
+              <option class="text">Ready for delivery</option>
+            </select>
+          </div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-    </tr>
-    <tr>
-      <th class="heading gradient-custom-2">Owner</th>
-      <td>{{owner}}</td>
-
-    </tr>
-    <tr>
-      <th class="heading gradient-custom-2">Model</th>
-      <td>{{model}}</td>
-    </tr>
-    <tr>
-      <th class="heading gradient-custom-2">Appointment Date</th>
-      <td>{{date}}</td>
-    </tr>
-    <tr>
-      <th class="heading gradient-custom-2">Contact</th>
-      <td>{{contact}}</td>
-    </tr>
-    <tr>
-      <th class="heading gradient-custom-2">Service type</th>
-      <td>{{serviceType}}</td>
-    </tr>
-    <tr>
-      <th class="heading gradient-custom-2">Service status</th>
-      <td>  
-        <div class="statusContainer">
-        <select class="status">
-          <option class="text">Ready for service</option>
-          <option class="text">Service in progress</option>
-          <option class="text">Ready for delivery</option>
-        </select>
-      </div></td>
-    </tr>
-  </table>
 
 </body>

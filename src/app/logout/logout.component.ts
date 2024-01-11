@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-logout',
@@ -11,7 +10,7 @@ export class LogoutComponent {
   
   isOpen: boolean = false;
   modalComponent: any;
- constructor(private route:Router, private modalService:ModalService ){}
+ constructor(private route:Router){}
  ngOnInit(){
 }
 yes(){

@@ -25,6 +25,7 @@ import { AdminRegistrationComponent } from './admin-panel/admin-registration/adm
 import { HeaderComponent } from './header/header.component';
 import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { GetServiceComponent } from './admin-panel/admin-home/get-service/get-service.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { LogoutComponent } from './logout/logout.component';
     HeaderComponent,
     AdminLoginComponent,
     LogoutComponent,
+    GetServiceComponent,
   ],
   imports: [
     BrowserModule,

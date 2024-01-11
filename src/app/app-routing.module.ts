@@ -14,6 +14,7 @@ import { AddCustomerComponent } from './admin-panel/add-customer/add-customer.co
 import { AdminRegistrationComponent } from './admin-panel/admin-registration/admin-registration.component';
 import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { GetServiceComponent } from './admin-panel/admin-home/get-service/get-service.component';
 
 const routes: Routes = [ 
   { path:'',redirectTo:'select-user',pathMatch:'full'},
@@ -23,9 +24,10 @@ const routes: Routes = [
   {path:'admin-home',component:AdminHomeComponent},
   {path:'admin-reg',component:AdminRegistrationComponent},
   {path:'admin-login',component:AdminLoginComponent},
-    {path:'add-customer',component:AddCustomerComponent},
+  {path:'add-customer',component:AddCustomerComponent},
   {path:'add-service',component:AddServiceComponent},
-  {path:'change-status',component:ChangeStatusComponent},
+  {path:'change-status/:id',component:ChangeStatusComponent},
+  {path:'get-service',component:GetServiceComponent},
   {path:'service-history',component:ServiceHistoryComponent},
   {path:'view-service',component:ViewServiceComponent},
   {path:'view-service/:id',component:ViewServiceComponent},

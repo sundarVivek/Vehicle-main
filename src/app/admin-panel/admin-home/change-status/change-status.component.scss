@@ -2,14 +2,14 @@ body {
     background-color: black;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    width: 100vw;
+    overflow: scroll;
+    width: 100%;
     /* 100% of viewport width */
     height: 100vh;
 }
 
 .table {
-    margin-top: 150px;
+    margin-top: 100px;
     width: 625px;
     align-items: center;
     justify-content: center;
@@ -78,4 +78,17 @@ table {
 }
 .statusContainer{
 margin-left: 129px;
+}
+.row{
+    margin-top: 150px;
+}
+.loginBtn {
+    width: 505px;
+    color: white;
+    font-size: x-large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    height: 69px;
+}
+td{
+    text-align: center;
 }

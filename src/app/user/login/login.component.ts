@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { AddService } from 'src/app/add.service';
 import { AuthService } from 'src/app/auth.service';
 
 @Component({
@@ -16,12 +17,11 @@ export class LoginComponent {
   submitted = false;
   errorMessage=null;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private route: Router, private toastr:ToastrService) { }
+  constructor(private fb: FormBuilder, private customer: AddService, private route: Router, private toastr:ToastrService) { }
   ngOnInit() {
     this.loginForm = this.fb.group({
       owner_name: ['', Validators.required],
       vehicle_no: ['', Validators.required],
-      role: ['']
     })
   }
   get f(){
@@ -31,10 +31,10 @@ export class LoginComponent {
   onSubmit() {
     this.submitted=true;
     if(this.loginForm.valid){
-        this.auth.getUser().subscribe(
+        this.customer.getVehicleService().subscribe(
       (result: any) => {
         const user: any = result.find((a: any) => {
-          return a.name == this.loginForm.value.owner_name && a.vehilceNo == this.loginForm.value.vehicle_no;
+          return a.customer_name == this.loginForm.value.owner_name && a.vehilceNo == this.loginForm.value.vehicle_no;
         });
         this.userData = user;
         console.log(this.userData);
