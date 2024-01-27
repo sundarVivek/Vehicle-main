@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, concatMap, from } from 'rxjs';
@@ -10,7 +10,9 @@ import { AddService } from 'src/app/add.service';
   styleUrls: ['./change-status.component.scss']
 })
 export class ChangeStatusComponent {
-  data:any;
+  @Output() ChangeStatusData = new EventEmitter<any>();
+  statusForm!: FormGroup;
+  statusData: any;
   id: any;
   serviceId: any;
   vehicleNo: any;
@@ -19,13 +21,19 @@ export class ChangeStatusComponent {
   date: any;
   contact: any;
   serviceType: any;
-  constructor(private addService: AddService, private router: ActivatedRoute, private fb: FormBuilder) { 
+  getId:any;
+  updatedResult:any;
+  constructor(private addService: AddService, private router: ActivatedRoute, private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    const id = this.router.snapshot.paramMap.get('id');
-    this.addService.getVehicleServiceById(id).subscribe(
+    this.statusForm = this.fb.group({
+      status: ['Ready for service', Validators.required]
+    })
+    this.getId = this.router.snapshot.paramMap.get('id');
+    this.addService.getVehicleServiceById(this.getId).subscribe(
       (result) => {
+        this.statusData=result;
         this.serviceId = result.id;
         this.vehicleNo = result.vehicleNo;
         this.owner = result.customer_name;
@@ -33,11 +41,28 @@ export class ChangeStatusComponent {
         this.date = result.appointment_date;
         this.contact = result.contact;
         this.serviceType = result.service_type;
+        console.log(result);
+        this.ChangeStatusData.emit(this.statusData);
       },
       (error) => {
         console.error('Error fetching data:', error);
       }
     );
-    
+
+  }
+  changeStatus(){
+    console.log(this.statusForm.value);
+    this.addService.getVehicleServiceById(this.getId).subscribe(
+      (result) => {
+       result.status=this.statusForm.value.status;
+       this.updatedResult=result;
+       this.addService.putVehicleService(this.getId,this.updatedResult).subscribe((res:any)=>{
+        alert('Updated successfully')
+       });
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
   }
 }

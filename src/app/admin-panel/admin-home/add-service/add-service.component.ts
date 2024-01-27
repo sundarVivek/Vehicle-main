@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { AddService } from 'src/app/add.service';
 
 @Component({
@@ -10,25 +11,34 @@ import { AddService } from 'src/app/add.service';
 export class AddServiceComponent {
   addServiceForm!: FormGroup;
   show: boolean = false;
-  submitted:boolean=false;
-  constructor(private fb: FormBuilder, private servicedata: AddService) { }
+  submitted: boolean = false;
+  todayDate = new Date();
+  constructor(private fb: FormBuilder,
+     private servicedata: AddService,
+     private route:Router) { }
 
   ngOnInit() {
+    console.log(this.todayDate);
     this.addServiceForm = this.fb.group({
-      customer_name: ['',Validators.compose([Validators.required,Validators.minLength(2)])],
-      contact: ['',Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10)])],
-      VehicleNo: ['',Validators.compose([Validators.required,Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')])],
-      model_name: ['',Validators.required],
-      appointment_date: ['',Validators.required],
-      service_type: ['',Validators.required],
-      radiobutton: ['',Validators.required],
+      customer_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      contact: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      VehicleNo: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')])],
+      model_name: ['', Validators.required],
+      appointment_date: [new Date().toISOString().split('T')[0], Validators.required],
+      service_type: ['', Validators.required],
+      radiobutton: ['', Validators.required],
+      status: ['Ready for service'],
       complaintbox1: [''],
       complaintbox2: [''],
       complaintbox3: [''],
       complaintbox4: [''],
     });
+    this.addServiceForm.controls?.['customer_name'].valueChanges.subscribe((value: string) => {
+      // Update the form control with the lowercase value
+      this.addServiceForm.controls?.['customer_name'].setValue(value.toLowerCase(), { emitEvent: false });
+    });
   }
-  get f(){
+  get f() {
     return this.addServiceForm.controls;
   }
   changeRadio() {
@@ -55,17 +65,17 @@ export class AddServiceComponent {
   }
   onSubmit() {
     console.log(this.addServiceForm.valid);
-    this.submitted=true;
+    this.submitted = true;
     if (this.addServiceForm.valid) {
-      this.servicedata.postVehicleService(this.addServiceForm.value).subscribe((res:any)=>{
-        alert('service added successfully')
+      this.servicedata.postVehicleService(this.addServiceForm.value).subscribe((res: any) => {
+        alert('service added successfully');
+        this.route.navigate(['/view-service'])
       },
-      (error:any)=>{
-        console.log(error);
+        (error: any) => {
+          console.log(error);
+        })
 
-    })
-
+    }
   }
-}
 
 }

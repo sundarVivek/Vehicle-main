@@ -1,40 +1,58 @@
-
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Customer name</th>
-                <th scope="col">Vehicle No</th>
-                <th scope="col">Service Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let service of serviceData">
-                <th scope="row">{{service.id}}</th>
-                <td>{{service.customer_name}}</td>
-                <td>{{service.vehicle_no}}</td>
-                <td>{{service.service_type}}</td>
-                <td *ngIf="showBtn">
-                    <div class="detailsbtn">
-                        <button type="button" (click)="details(service.id)" class="btn btn-primary">Details</button>
-                    </div>
-    
-    
-                </td>
-                <td *ngIf="showBtn">
-                    <div class="editbtn">
-                        <button type="button" (click)="editService(service.id)" class="btn btn-success">Edit</button>
-    
-                    </div>
-    
-                </td>
-                <td *ngIf="showBtn">
-                    <div class="deletebtn">
-                        <button type="button" (click)="deleteService(service.id)" class="btn btn-danger">Delete</button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <app-header></app-header>
+    <nav class="navbar navbar-light bg-dark justify-content-between">
+        <a href="/admin-home" class="navbar-brand">HOME</a>
+        <form class="form-inline">
+            <div class="search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search by Vehicle NO" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </form>
+      </nav>>
+    <div class="container">
+        <table class="table-dark">
+            <thead>
+                <tr>
+                    <!-- <th scope="col">Id</th> -->
+                    <th scope="col">Vehicle No</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Service Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Complaints</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userData">
+                    <!-- <th scope="row">{{item.id}}</th> -->
+                    <td class="vehicleNo">{{item.vehicleNo}}</td>
+                    <td>{{item.model_name}}</td>
+                    <td>{{item.customer_name}}</td>
+                    <td>{{item.contact}}</td>
+                    <td>{{item.service_type}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.radiobutton}}</td>
+                    <td>
+                        <div class="detailsbtn">
+                            <button type="button" class="btn btn-primary" (click)="details(item.id)">Details</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editbtn">
+                            <button type="button" class="btn btn-success" (click)="editService(item.id)">Edit</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="deletebtn">
+                            <button type="button" class="btn btn-danger" (click)="deleteService(item.id)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>

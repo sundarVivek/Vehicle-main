@@ -20,7 +20,7 @@ const routes: Routes = [
   { path:'',redirectTo:'select-user',pathMatch:'full'},
   { path:'login',component:LoginComponent},
   { path:'register',component:RegisterComponent},
-  {path:'track-vehicle',component:TrackVehicleComponent},
+  {path:'track-vehicle/:id',component:TrackVehicleComponent},
   {path:'admin-home',component:AdminHomeComponent},
   {path:'admin-reg',component:AdminRegistrationComponent},
   {path:'admin-login',component:AdminLoginComponent},

@@ -1,21 +1,17 @@
 body {
-    background-color: black;
     margin: 0;
-    padding: 0;
-    overflow: scroll;
     width: 100%;
-    /* 100% of viewport width */
-    height: 100vh;
+    height: auto;
+    background-color: black;
+    padding-top: 170px;
 }
 .loginBtn {
-    width: 432px;
+    width: 425px;
     color: white;
     font-size: x-large;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     height: 69px;
 }
 .container{
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
+   margin-left: 200px;
 }

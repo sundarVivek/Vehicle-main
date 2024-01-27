@@ -13,6 +13,15 @@ export class GetServiceComponent {
   id: any;
   user:any;
   data:any;
+  serviceId: any;
+  vehicleNo: any;
+  owner: any;
+  model: any;
+  date: any;
+  contact: any;
+  serviceType: any;
+  getId:any;
+  updatedResult:any;
   constructor(private addService: AddService, private route: Router, private fb: FormBuilder) { }
   ngOnInit() {
     this.getServiceForm = this.fb.group({
@@ -20,6 +29,9 @@ export class GetServiceComponent {
       customer_name: ['', Validators.required],
     }
     );
+  }
+  receiveDataFromChangeStatus(changeStatusData: any) {
+    console.log("change s",changeStatusData);
   }
   onSubmit() {
     this.addService.getVehicleService().subscribe(
@@ -30,8 +42,15 @@ export class GetServiceComponent {
         if(user){
           this.data=user;
           this.id=this.data.id;
-          console.log(this.id);
-               this.route.navigate(['/change-status', this.id]);
+          this.serviceId = result.id;
+          this.vehicleNo = result.vehicleNo;
+          this.owner = result.customer_name;
+          this.model = result.model_name;
+          this.date = result.appointment_date;
+          this.contact = result.contact;
+          this.serviceType = result.service_type;
+          // console.log(this.id);
+              //  this.route.navigate(['/change-status', this.id]);
          }
       },
      
@@ -41,4 +60,5 @@ export class GetServiceComponent {
     }
 
   }
+  
 }

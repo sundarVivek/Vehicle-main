@@ -1,70 +1,84 @@
-
 <body>
-      <app-header></app-header>
-      <app-sidebar></app-sidebar>
-      <div class="mainContainer">
-        <div class="container">
-          <div class="card card1">
-            <div class="card-body">
-              <!-- Example single danger button -->
-    <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown" aria-expanded="false">
-        Today
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Day</a></li>
-        <li><a class="dropdown-item" href="#">Week</a></li>
-        <li><a class="dropdown-item" href="#">Month</a></li>
-        <li><a class="dropdown-item" href="#">Year</a></li>
-      </ul>
-    </div>
-      <h3 id="text">Ready for service</h3>
-      <h1 id="count">{{readyForService}}</h1>
-            </div>
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <div class="mainContainer">
+    <div class="container">
+      <div class="card card1">
+        <div class="card-body">
+          <!-- Example single danger button -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Today
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Day</a></li>
+              <li><a class="dropdown-item" href="#">Week</a></li>
+              <li><a class="dropdown-item" href="#">Month</a></li>
+              <li><a class="dropdown-item" href="#">Year</a></li>
+            </ul>
           </div>
-          <div class="card card2">
-            <div class="card-body">
-              <div class="btn-group">
-                <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  Today
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Day</a></li>
-                  <li><a class="dropdown-item" href="#">Week</a></li>
-                  <li><a class="dropdown-item" href="#">Month</a></li>
-                  <li><a class="dropdown-item" href="#">Year</a></li>
-                </ul>
-              </div>
-              <h3 id="text">Pending</h3>
-              <h1 id="count">{{pendingService}}</h1>
-            </div>
-          </div>
-          <div class="card card3">
-            <div class="card-body">
-              <div class="btn-group">
-                <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  Today
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Day</a></li>
-                  <li><a class="dropdown-item" href="#">Week</a></li>
-                  <li><a class="dropdown-item" href="#">Month</a></li>
-                  <li><a class="dropdown-item" href="#">Year</a></li>
-                </ul>
-              </div>
-                       
-              <h3 id="text">Completed</h3>
-              <h1 id="count">{{completedService}}</h1>
-            </div>
-          </div>
-            <!-- <button [routerLink]="'/register'" type="button" class="btn btn-success btn-circle btn-sm">Add Service</button> 
-            <button [routerLink]="'/change-status'" type="button" class="btn btn-danger btn-circle btn-sm">Change status</button> 
-            <button [routerLink]="'/service-history'" type="button" class="btn btn-warning btn-circle btn-sm">Service history</button> -->
-        
-        </div>
-        <div class="chartContainer">
-          <canvas id="canvas" width="200px" height="200">{{chart}}</canvas>
+          <h3 id="text">Ready for service</h3>
+          <h1 id="count">{{readyForService}}</h1>
         </div>
       </div>
- 
+      <div class="card card2">
+        <div class="card-body">
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Today
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Day</a></li>
+              <li><a class="dropdown-item" href="#">Week</a></li>
+              <li><a class="dropdown-item" href="#">Month</a></li>
+              <li><a class="dropdown-item" href="#">Year</a></li>
+            </ul>
+          </div>
+          <h3 id="text">Service in progress</h3>
+          <h1 id="count">{{pendingService}}</h1>
+        </div>
+      </div>
+      <div class="card card3">
+        <div class="card-body">
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Today
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Day</a></li>
+              <li><a class="dropdown-item" href="#">Week</a></li>
+              <li><a class="dropdown-item" href="#">Month</a></li>
+              <li><a class="dropdown-item" href="#">Year</a></li>
+            </ul>
+          </div>
+          <h3 id="text">Ready for delivery</h3>
+          <h1 id="count">{{readyForDelivery}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="card card4">
+      <div class="card-body">
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Today
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Day</a></li>
+            <li><a class="dropdown-item" href="#">Week</a></li>
+            <li><a class="dropdown-item" href="#">Month</a></li>
+            <li><a class="dropdown-item" href="#">Year</a></li>
+          </ul>
+        </div>
+        <h3 id="text">Completed</h3>
+        <h1 id="count">{{completedService}}</h1>
+      </div>
+    </div>
+    <!-- <div class="chartContainer">
+      <canvas id="canvas" width="200px" height="200">{{chart}}</canvas>
+    </div> -->
+  </div>
 </body>

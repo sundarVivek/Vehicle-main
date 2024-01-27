@@ -1,27 +1,44 @@
-.deletebtn{
-    margin-left: -192px;
-}
-.editbtn{
-    margin-left: -122px;
-
-}
-.detailsbtn{
-    margin-left: -51px;
-}
-body{
-    //margin: auto 10px;
-    width: auto;
-    // height: 1000px;
+body {
     background-color: black;
-    position: static;
-    //height: fit-content;
+    margin: 0;
+    width: 100%;
+    padding-top: 170px;
 }
-tbody, td, tfoot, th, thead, tr {
-    padding-left: 158px;
-    padding-bottom: 50px;
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+    color: white;
+    background-color: black;
+    justify-content: space-around;
+}
+
+.table-dark {
+    box-shadow: 1px -1px 14px grey;
+    margin-top: 150px;
+    width: 100%;
+}
+
+.container {
+    max-height: 700px;
+    /* Set a fixed height for the table container */
+    overflow-y: auto;
+    margin-top: -94px;
+}
+
+.vehicleNo {
+    color: blue;
+}
+.search{
+    display: inline-flex;
+    padding-right: 200px;
+}
+.navbar-brand{
     color: white;
 }
-table{
-    box-shadow: 1px -1px 14px grey;
-    margin-top: 52px;
+.mr-sm-2{
+    margin-left: 100px;
 }

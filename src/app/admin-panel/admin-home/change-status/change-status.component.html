@@ -1,27 +1,20 @@
 <body>
   <app-header></app-header>
-  <!-- <nav class="navbar bg-body-tertiary">
-    <div class="icon">
-      <img src="assets\images\yamaha-logo-3860.png" class="img-fluid" alt="Phone image">
-    </div>
-  </nav> -->
+  <app-sidebar></app-sidebar>
   <div class="row">
     <div class="column">
       <table class="table">
         <tr>
           <th class="heading gradient-custom-2">ID</th>
-          
           <td>{{serviceId}}</td>
         </tr>
         <tr>
           <th class="heading gradient-custom-2">Vehicle No</th>
           <td>{{vehicleNo}}</td>
-    
         </tr>
         <tr>
           <th class="heading gradient-custom-2">Owner</th>
           <td>{{owner}}</td>
-    
         </tr>
         <tr>
           <th class="heading gradient-custom-2">Model</th>
@@ -29,7 +22,7 @@
         </tr>
         <tr>
           <th class="heading gradient-custom-2">Appointment Date</th>
-          <td>{{date}}</td>
+          <td>{{date|date:'dd/MM/yy'}}</td>
         </tr>
         <tr>
           <th class="heading gradient-custom-2">Contact</th>
@@ -43,12 +36,15 @@
           <th class="heading gradient-custom-2">Service status</th>
           <td>  
             <div class="statusContainer">
-            <select class="status">
-              <option class="text">Ready for service</option>
-              <option class="text">Service in progress</option>
-              <option class="text">Ready for delivery</option>
-            </select>
-          </div></td>
+              <form [formGroup]="statusForm">
+                <select class="status" formControlName="status" name="status" (change)="changeStatus()">
+                  <option class="text" value="Ready for service">Ready for service</option>
+                  <option class="text" value="Service in progress">Service in progress</option>
+                  <option class="text" value="Ready for delivery">Ready for delivery</option>
+                </select>
+              </form>
+          </div>
+        </td>
         </tr>
       </table>
     </div>

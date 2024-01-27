@@ -10,17 +10,18 @@
             
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 form">
               <div class="notification">
-                <p id="para">Dont use any space in between your vehicle number. For example TN01CB1234 </p>
+                <p id="para">Enter your vehicle number like this format : TN 01 CB 1234. </p>
+                <p></p>
               </div>
               <!-- <h1 class="text">WELCOME </h1> -->
               <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Vehicle No" formControlName="vehicle_no" />
+                  <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Vehicle No" formControlName="VehilceNo" />
                 </div>
                 <div class="form-outline mb-4">
-                  <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Owner name" formControlName="owner_name" />
+                  <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Owner name" formControlName="customer_name" />
                 </div>
                 <!-- Submit button -->
                 <span class="error-message" *ngIf="submitted&&loginForm.invalid">Please provide valid credentials </span>

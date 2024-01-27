@@ -15,79 +15,36 @@ export class LoginComponent {
   hide = true;
   userData: any;
   submitted = false;
-  errorMessage=null;
+  errorMessage = null;
+  customerId:any;
 
-  constructor(private fb: FormBuilder, private customer: AddService, private route: Router, private toastr:ToastrService) { }
+  constructor(private fb: FormBuilder, private addService: AddService, private route: Router, private toastr: ToastrService) { }
   ngOnInit() {
     this.loginForm = this.fb.group({
-      owner_name: ['', Validators.required],
-      vehicle_no: ['', Validators.required],
+      customer_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      VehilceNo: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')])],
+
     })
   }
-  get f(){
+  get f() {
     return this.loginForm.controls;
   }
 
   onSubmit() {
-    this.submitted=true;
-    if(this.loginForm.valid){
-        this.customer.getVehicleService().subscribe(
-      (result: any) => {
-        const user: any = result.find((a: any) => {
-          return a.customer_name == this.loginForm.value.owner_name && a.vehilceNo == this.loginForm.value.vehicle_no;
-        });
-        this.userData = user;
-        console.log(this.userData);
-        localStorage.setItem('username',this.loginForm.value.owner_name);
-        if (user) {
-          // alert('Login successful');
-          this.toastr.success('Login successful');
-          
-          if (user.vehilceNo === '12345'&&user.name==='admin') {
-            this.route.navigate(['/admin-home']);
+    console.log("vahga", this.loginForm.value);
+    if (this.loginForm.valid) {
+      this.addService.login(this.loginForm.value).subscribe({
+        next: (res: any) => {
+          this.customerId=res.id;
+          console.log(res);
+          if (this.loginForm.controls?.['VehilceNo'].value==res.vehilceNo&&this.loginForm.controls?.['customer_name'].value==res.customer_name) {
+            alert('Login successful');
+            this.route.navigate(['/track-vehicle',this.customerId])
           }
-          else {
-            this.route.navigate(['/track-vehicle']);
-          }
-        }
-        else {
-          this.toastr.error('You are not added as a user yet!');
-        }
+        },
       },
-      
-          (error: any) => {
-      // Handle error
-      this.errorMessage=error.message;
-      console.log(this.errorMessage);
-          }
-    )
+      )
     }
+}
 
-    }
-    // this.auth.getUser().subscribe(
-    //   (result: any) => {
-    //     const user: any = result.find((a: any) => {
-    //       return a.owner_name == this.loginForm.value.owner_name && a.vehicle_no == this.loginForm.value.vehicle_no;
-    //     });
-    //     this.userData = user;
-    //     console.log(this.userData)
-    //     if (user) {
-    //       // alert('Login successful');
-    //       this.toastr.success('Login successful');
-          
-    //       if (user.role == 'admin') {
-    //         this.route.navigate(['/view-service']);
-    //       }
-    //       else if (user.role == 'customer') {
-    //         this.route.navigate(['/track-vehicle']);
-    //       }
-    //     }
-    //     else {
-    //       this.toastr.error('user does not exist')
-    //     }
-    //   }
-    // )
-    // sessionStorage.setItem('username',this.loginForm.value.owner_name);
-    // sessionStorage.setItem('password',this.loginForm.value.vehicle_no);
-  }
-
+}

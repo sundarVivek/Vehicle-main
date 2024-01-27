@@ -1,9 +1,7 @@
 
 <body>
 <app-header></app-header>
-  <!-- <div class="icon">
-    <img src="assets\images\yamaha-logo-3860.png" class="img-fluid" alt="Phone image">
-  </div> -->
+<app-sidebar></app-sidebar>
   <form class="col-md-6" [formGroup]="addServiceForm" (ngSubmit)="onSubmit()">
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">CUSTOMER NAME</label>
@@ -50,8 +48,8 @@
       <label for="inputState" class="form-label">Service Type</label>
       <select id="inputState" class="form-select" formControlName="service_type">
         <option>Select</option>
-        <option value="free_service">Free service</option>
-        <option value="paid_service">Paid service</option>
+        <option value="Free service">Free service</option>
+        <option value="Paid service">Paid service</option>
       </select>
       <span class="errorMessage" *ngIf="addServiceForm.get('service_type')?.hasError('required') && addServiceForm.get('service_type')?.touched">Please fill this field !</span>
     </div>

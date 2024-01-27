@@ -8,47 +8,53 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./admin-home.component.scss']
 })
 export class AdminHomeComponent {
-  constructor(private addService:AddService) { }
+  constructor(private addService: AddService) { }
   chart: any = [];
-  readyForService:number=0;
-  pendingService:number=0;
-  completedService:number=0;
- // your-component.component.ts
+  readyForService: number = 0;
+  pendingService: number = 0;
+  readyForDelivery:number=0;
+  completedService: number = 0;
+  data: any = [];
 
-ngOnInit() {
-  this.addService.getVehicleService().subscribe((res:any)=>{
-this.readyForService=res.length;
-this.pendingService=res.length;
-this.completedService=res.length;
-  });
-  this.chart = new Chart('canvas', {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [
-        {
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
+  ngOnInit() {
+    this.addService.getVehicleService().subscribe((res: any) => {
+      this.data = res;
+      this.countByStatus();
+    });
+    this.chart = new Chart('canvas', {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [
+          {
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
         },
       },
-    },
-  });
+    });
+  }
+
+  countByStatus(){
+    this.readyForService = this.data.filter((x: any) => x.status === 'ready_for_service').length;
+    console.log('Number of required:', this.readyForService);
+    this.pendingService = this.data.filter((x: any) => x.status === 'Service in progress').length;
+    console.log('Number of required:', this.pendingService);
+    this.readyForDelivery = this.data.filter((x: any) => x.status === 'Ready for delivery').length;
+    console.log('Number of required:', this.readyForDelivery);
+    this.completedService = this.data.length;
+    console.log('Number of required:', this.completedService);
+  }
+
 }
 
-logout() {
-
-}
 
 
-}
-
-
-  

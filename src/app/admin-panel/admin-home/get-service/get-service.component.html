@@ -1,23 +1,32 @@
 
   <body>
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
     <div class="container">
-      <form [formGroup]="getServiceForm" (ngSubmit)="onSubmit()">
-                
-        <!-- Email input -->
-        <div class="form-outline mb-4 col-md-12">
-          <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Vehicle No" formControlName="vehicleNo" />
+      <div class="row">
+        <div class="col">
+          <form [formGroup]="getServiceForm" (ngSubmit)="onSubmit()">
+            <!-- Email input -->
+            <div class="form-outline mb-4 col-md-8">
+              <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Vehicle No" formControlName="vehicleNo" />
+            </div>
+            <div class="form-outline mb-4 col-md-8">
+              <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Owner name" formControlName="customer_name" />
+            </div>
+            <!-- Submit button -->
+            <!-- <span class="error-message" *ngIf="submitted&&loginForm.invalid">Please provide valid credentials </span> -->
+            <div class="submitbtn">
+                <button type="submit" class="gradient-custom-2 loginBtn btn-danger">GET SERVICE</button>
+            </div>
+            <div *ngIf="">
+              <!-- <h3 class="danger">{{errorMessage}}</h3> -->
+            </div>
+          </form>
         </div>
-        <div class="form-outline mb-4 col-md-12">
-          <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Owner name" formControlName="customer_name" />
+        <div class="col">
+          <app-change-status (ChangeStatusData)="receiveDataFromChangeStatus($event)"></app-change-status>
         </div>
-        <!-- Submit button -->
-        <!-- <span class="error-message" *ngIf="submitted&&loginForm.invalid">Please provide valid credentials </span> -->
-        <div class="submitbtn">
-            <button type="submit" class="gradient-custom-2 loginBtn">GET SERVICE</button>
-        </div>
-        <div *ngIf="">
-          <!-- <h3 class="danger">{{errorMessage}}</h3> -->
-        </div>
-      </form>
+      </div>
+     
     </div>
   </body>
