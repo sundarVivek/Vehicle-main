@@ -76,10 +76,6 @@ export class EditServiceComponent {
       alert('data updated successfully');
       this.route.navigate(['/view-service'])
     });
-    // this.addService.putVehicleService(this.id, this.editServiceForm.value).pipe(first()).subscribe(res => {
-    //   alert('data updated successfully');
-    //   this.route.navigate(['/view-service'])
-    // })
   }
 }
 }

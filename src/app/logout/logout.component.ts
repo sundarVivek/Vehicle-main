@@ -7,32 +7,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent {
-  
+
   isOpen: boolean = false;
   modalComponent: any;
- constructor(private route:Router){}
- ngOnInit(){
-}
-yes(){
-localStorage.removeItem('username');
-this.route.navigate(['/login'])
-}
-
-openModal(): void {
-  const modal = document.getElementById('myModal');
-  if(modal!=null){
-    modal.style.display = 'block';
-    modal.style.marginTop = '200px';
-    modal.style.marginLeft = '450px';
+  constructor(private route: Router) { }
+  ngOnInit() {
+  }
+  yes() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    this.route.navigate(['/login'])
   }
 
-}
+  openModal(): void {
+    const modal = document.getElementById('myModal');
+    if (modal != null) {
+      modal.style.display = 'block';
+      modal.style.marginTop = '200px';
+      modal.style.marginLeft = '450px';
+    }
 
-closeModal(): void {
-  const modal = document.getElementById('myModal');
-  if(modal!=null){
-    modal.style.display = 'none';
   }
 
-}
+  closeModal(): void {
+    const modal = document.getElementById('myModal');
+    if (modal != null) {
+      modal.style.display = 'none';
+    }
+
+  }
 }

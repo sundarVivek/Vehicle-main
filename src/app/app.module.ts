@@ -20,12 +20,12 @@ import { ToastrModule } from 'ngx-toastr';
 // import {CdkTableModule} from '@angular/cdk/table';
 import { SelectUserComponent } from './select-user/select-user.component';
 import { SidebarComponent } from './admin-panel/sidebar/sidebar.component';
-import { AddCustomerComponent } from './admin-panel/add-customer/add-customer.component';
 import { AdminRegistrationComponent } from './admin-panel/admin-registration/admin-registration.component';
 import { HeaderComponent } from './header/header.component';
 import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { GetServiceComponent } from './admin-panel/admin-home/get-service/get-service.component';
+import { SearchServicePipe } from './filters/search-service.pipe';
 
 @NgModule({
   declarations: [
@@ -41,12 +41,12 @@ import { GetServiceComponent } from './admin-panel/admin-home/get-service/get-se
     EditServiceComponent,
     SelectUserComponent,
     SidebarComponent,
-    AddCustomerComponent,
     AdminRegistrationComponent,
     HeaderComponent,
     AdminLoginComponent,
     LogoutComponent,
     GetServiceComponent,
+    SearchServicePipe,
   ],
   imports: [
     BrowserModule,

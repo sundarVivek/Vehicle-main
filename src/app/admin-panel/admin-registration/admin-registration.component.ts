@@ -17,7 +17,6 @@ export class AdminRegistrationComponent {
   ngOnInit() {
     this.adminRegister = this.fb.group({
       username: ['', Validators.required],
-      // access_key: ['', Validators.required],
       email: ['', Validators.email],
       password: ['', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(10)])],
       confirm_password: ['', Validators.required],
@@ -33,7 +32,6 @@ export class AdminRegistrationComponent {
     passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirm_password');
-  
     // Check if both passwords are present and match
     return password && confirmPassword && password.value !== confirmPassword.value
       ? { 'passwordMismatch': true }: null;
@@ -49,7 +47,6 @@ export class AdminRegistrationComponent {
         }
       ),
       (error:any) => {
-        // Handle error
         console.error(error);
     };
     }

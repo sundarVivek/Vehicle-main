@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AddService } from 'src/app/add.service';
-import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -38,12 +37,16 @@ export class LoginComponent {
           this.customerId=res.id;
           console.log(res);
           if (this.loginForm.controls?.['VehilceNo'].value==res.vehilceNo&&this.loginForm.controls?.['customer_name'].value==res.customer_name) {
-            alert('Login successful');
+            this.toastr.success('Login successful');
+            localStorage.setItem('username',this.loginForm.value.customer_name);
+            localStorage.setItem('password',this.loginForm.value.VehilceNo)
             this.route.navigate(['/track-vehicle',this.customerId])
           }
         },
       },
       )
+    }else{
+      this.toastr.error('Login failed');
     }
 }
 

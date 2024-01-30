@@ -10,7 +10,6 @@ import { RegisterComponent } from './user/login/register/register.component';
 import { ViewServiceComponent } from './admin-panel/view-service/view-service.component';
 import { EditServiceComponent } from './admin-panel/edit-service/edit-service.component';
 import { SelectUserComponent } from './select-user/select-user.component';
-import { AddCustomerComponent } from './admin-panel/add-customer/add-customer.component';
 import { AdminRegistrationComponent } from './admin-panel/admin-registration/admin-registration.component';
 import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
   {path:'admin-home',component:AdminHomeComponent},
   {path:'admin-reg',component:AdminRegistrationComponent},
   {path:'admin-login',component:AdminLoginComponent},
-  {path:'add-customer',component:AddCustomerComponent},
   {path:'add-service',component:AddServiceComponent},
   {path:'change-status/:id',component:ChangeStatusComponent},
   {path:'get-service',component:GetServiceComponent},
@@ -35,7 +33,6 @@ const routes: Routes = [
   {path:'select-user',component:SelectUserComponent},
   {path:'logout',component:LogoutComponent}
 ];
-  // {path:'edit-service',component:EditServiceComponent},;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

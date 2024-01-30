@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AddService } from 'src/app/add.service';
-import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-view-service',
@@ -11,12 +10,11 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class ViewServiceComponent {
   id: any;
-  serviceData: any = [];
   userData: any;
+  searchText:any;
 
   constructor(private addService: AddService,
     private route: Router,
-    private auth: AuthService,
     private router: ActivatedRoute,
   ) { }
   ngOnInit() {
