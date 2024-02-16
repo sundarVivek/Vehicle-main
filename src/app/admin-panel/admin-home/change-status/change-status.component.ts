@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, concatMap, from } from 'rxjs';
 import { AddService } from 'src/app/add.service';
 
@@ -21,9 +22,13 @@ export class ChangeStatusComponent {
   date: any;
   contact: any;
   serviceType: any;
-  getId:any;
-  updatedResult:any;
-  constructor(private addService: AddService, private router: ActivatedRoute, private fb: FormBuilder) {
+  getId: any;
+  updatedResult: any;
+  constructor(private addService: AddService,
+    private router: ActivatedRoute,
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) {
   }
 
   ngOnInit() {
@@ -33,7 +38,7 @@ export class ChangeStatusComponent {
     this.getId = this.router.snapshot.paramMap.get('id');
     this.addService.getVehicleServiceById(this.getId).subscribe(
       (result) => {
-        this.statusData=result;
+        this.statusData = result;
         this.serviceId = result.id;
         this.vehicleNo = result.vehicleNo;
         this.owner = result.customer_name;
@@ -50,15 +55,15 @@ export class ChangeStatusComponent {
     );
 
   }
-  changeStatus(){
+  changeStatus() {
     console.log(this.statusForm.value);
     this.addService.getVehicleServiceById(this.getId).subscribe(
       (result) => {
-       result.status=this.statusForm.value.status;
-       this.updatedResult=result;
-       this.addService.putVehicleService(this.getId,this.updatedResult).subscribe((res:any)=>{
-        alert('Updated successfully')
-       });
+        result.status = this.statusForm.value.status;
+        this.updatedResult = result;
+        this.addService.putVehicleService(this.getId, this.updatedResult).subscribe((res: any) => {
+          this.toastr.success('Status has changed successfully');
+        });
       },
       (error) => {
         console.error('Error fetching data:', error);

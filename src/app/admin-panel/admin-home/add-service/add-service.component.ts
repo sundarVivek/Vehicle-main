@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AddService } from 'src/app/add.service';
 
 @Component({
@@ -14,16 +15,18 @@ export class AddServiceComponent {
   submitted: boolean = false;
   todayDate = new Date();
   constructor(private fb: FormBuilder,
-     private servicedata: AddService,
-     private route:Router) { }
+    private servicedata: AddService,
+    private route: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     console.log(this.todayDate);
     this.addServiceForm = this.fb.group({
       customer_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      contact: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      // contact: ['', Validators.compose([Validators.required,Validators.pattern('^(?:(?:/+|0{0,2})91(/s*[/-]/s*)?|[0]?)?[6789]/d{9}$'), Validators.minLength(10), Validators.maxLength(10)])],
+      contact: ['', Validators.compose([Validators.required, Validators.pattern('^[0-9]{10}$')])],
       VehicleNo: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')])],
-      model_name: ['', Validators.required],
+      model_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       appointment_date: [new Date().toISOString().split('T')[0], Validators.required],
       service_type: ['', Validators.required],
       radiobutton: ['', Validators.required],
@@ -68,7 +71,7 @@ export class AddServiceComponent {
     this.submitted = true;
     if (this.addServiceForm.valid) {
       this.servicedata.postVehicleService(this.addServiceForm.value).subscribe((res: any) => {
-        alert('service added successfully');
+        this.toastr.success('service added successfully');
         this.route.navigate(['/view-service'])
       },
         (error: any) => {

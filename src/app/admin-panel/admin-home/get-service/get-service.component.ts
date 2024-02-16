@@ -29,6 +29,10 @@ export class GetServiceComponent {
       customer_name: ['', Validators.required],
     }
     );
+    this.getServiceForm.controls?.['customer_name'].valueChanges.subscribe((value: string) => {
+      // Update the form control with the lowercase value
+      this.getServiceForm.controls?.['customer_name'].setValue(value.toLowerCase(), { emitEvent: false });
+    });
   }
   receiveDataFromChangeStatus(changeStatusData: any) {
     console.log("change s",changeStatusData);
@@ -42,14 +46,14 @@ export class GetServiceComponent {
         if(user){
           this.data=user;
           this.id=this.data.id;
-          // this.serviceId = result.id;
-          // this.vehicleNo = result.vehicleNo;
-          // this.owner = result.customer_name;
-          // this.model = result.model_name;
-          // this.date = result.appointment_date;
-          // this.contact = result.contact;
-          // this.serviceType = result.service_type;
-          // console.log(this.id);
+          this.serviceId = result.id;
+          this.vehicleNo = result.vehicleNo;
+          this.owner = result.customer_name;
+          this.model = result.model_name;
+          this.date = result.appointment_date;
+          this.contact = result.contact;
+          this.serviceType = result.service_type;
+          console.log(this.id);
                this.route.navigate(['/change-status', this.id]);
          }
       },

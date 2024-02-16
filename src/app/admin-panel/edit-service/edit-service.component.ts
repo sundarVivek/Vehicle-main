@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs';
 import { AddService } from 'src/app/add.service';
 
@@ -18,7 +19,8 @@ export class EditServiceComponent {
   constructor(private fb: FormBuilder,
      private addService: AddService, 
      private router: ActivatedRoute,
-     private route:Router) {
+     private route:Router,
+     private toastr:ToastrService) {
   }
 
   ngOnInit() {
@@ -73,7 +75,7 @@ export class EditServiceComponent {
     if (this.editServiceForm.valid) {
     console.log(this.editServiceForm.value);
     this.addService.putVehicleService(this.id,this.editServiceForm.value).subscribe(res=>{
-      alert('data updated successfully');
+    this.toastr.success('Data updated successfully')
       this.route.navigate(['/view-service'])
     });
   }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs';
 import { AddService } from 'src/app/add.service';
 
@@ -16,6 +17,7 @@ export class ViewServiceComponent {
   constructor(private addService: AddService,
     private route: Router,
     private router: ActivatedRoute,
+    private toastr:ToastrService
   ) { }
   ngOnInit() {
     this.loadVehicleService();
@@ -34,7 +36,7 @@ export class ViewServiceComponent {
 
   deleteService(id: any) {
     this.addService.deleteVehicleService(id).subscribe((res: any) => {
-      alert("deleted successfully");
+      this.toastr.success('Deleted successfully');
       this.loadVehicleService();
     })
   }
