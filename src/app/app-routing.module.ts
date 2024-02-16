@@ -25,6 +25,7 @@ const routes: Routes = [
   {path:'admin-login',component:AdminLoginComponent},
   {path:'add-service',component:AddServiceComponent},
   {path:'change-status/:id',component:ChangeStatusComponent},
+  {path:'view-service-details/:id',component:ChangeStatusComponent},
   {path:'get-service',component:GetServiceComponent},
   {path:'service-history',component:ServiceHistoryComponent},
   {path:'view-service',component:ViewServiceComponent},

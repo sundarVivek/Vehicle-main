@@ -40,6 +40,6 @@ export class ViewServiceComponent {
   }
 
   details(id:any) {
-    this.route.navigate(['/change-status',id]);
+    this.route.navigate(['/view-service-details',id]);
   }
 }

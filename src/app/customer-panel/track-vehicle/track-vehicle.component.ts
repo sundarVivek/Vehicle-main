@@ -33,7 +33,7 @@ export class TrackVehicleComponent {
       (result) => {
         this.status = result.status;
         console.log(this.status);
-        if(result.status==='ready_for_service'){
+        if(result.status==='Ready for service'){
           setInterval(() => {
             this.isReadyForServiceBlinking = !this.isReadyForServiceBlinking;
           }, 1000);

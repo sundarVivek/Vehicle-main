@@ -26,6 +26,7 @@ import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.compo
 import { LogoutComponent } from './logout/logout.component';
 import { GetServiceComponent } from './admin-panel/admin-home/get-service/get-service.component';
 import { SearchServicePipe } from './filters/search-service.pipe';
+import { ViewServiceDetailsComponent } from './admin-panel/admin-home/view-service-details/view-service-details.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SearchServicePipe } from './filters/search-service.pipe';
     LogoutComponent,
     GetServiceComponent,
     SearchServicePipe,
+    ViewServiceDetailsComponent,
   ],
   imports: [
     BrowserModule,
