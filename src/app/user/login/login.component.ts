@@ -16,13 +16,13 @@ export class LoginComponent {
   submitted = false;
   errorMessage = null;
   customerId:any;
+  loading:boolean=false;
 
   constructor(private fb: FormBuilder, private addService: AddService, private route: Router, private toastr: ToastrService) { }
   ngOnInit() {
     this.loginForm = this.fb.group({
       customer_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       VehilceNo: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')])],
-
     })
   }
   get f() {
@@ -31,9 +31,10 @@ export class LoginComponent {
 
   onSubmit() {
     console.log("vahga", this.loginForm.value);
+    this.loading=true;
     if (this.loginForm.valid) {
-      this.addService.login(this.loginForm.value).subscribe({
-        next: (res: any) => {
+      this.addService.login(this.loginForm.value).subscribe(
+        (res: any) => {
           this.customerId=res.id;
           console.log(res);
           if (this.loginForm.controls?.['VehilceNo'].value==res.vehilceNo&&this.loginForm.controls?.['customer_name'].value==res.customer_name) {
@@ -43,7 +44,11 @@ export class LoginComponent {
             this.route.navigate(['/track-vehicle',this.customerId])
           }
         },
-      },
+        (error: any) => {
+          // Handle error
+          this.errorMessage = error.message;
+          console.log(this.errorMessage);
+        }
       )
     }else{
       this.toastr.error('Login failed');

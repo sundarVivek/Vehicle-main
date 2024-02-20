@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 })
 export class SelectUserComponent {
   cardValue: any;
+  loading:boolean=false;
   constructor(private route:Router){}
 ngOnInit(){
 
 }
 goLogin(){
+  this.loading=true;
   if(this.cardValue=1){
     this.route.navigate(['/admin-login']);
   }

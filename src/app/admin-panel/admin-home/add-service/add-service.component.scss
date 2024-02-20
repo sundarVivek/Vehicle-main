@@ -2,26 +2,24 @@ body{
     margin: 0;
     width: 100%;
     background-color: black;
-    height: fit-content;
+    height: 100%;
     padding-top: 170px;
+    position: relative;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    margin-left: 100px;
+    margin-bottom: 20px;
 }
 label{
     color: white;
 }
-.col-md-6{
-    margin-left: 316px;
-    margin-bottom: 20px;
-}
-.complaints{
-    margin-left: 316px;
-}
+
 .btn-danger{
     width: 368px;
 }
-.col-12{
-    margin-left: 316px;
-    margin-top: 50px;
-}
+
 .img-fluid{
     width: 200px;
 }
@@ -30,12 +28,9 @@ label{
 }
 .radioContainer{
     display: inline-flex;
-    margin-left: 316px;
     padding-bottom: 30px;
 }
-.radioLabel{
-    margin-left: 316px;
-}
+
 .form-check-input{
     width: 50px;
     height: 50px;
@@ -51,6 +46,8 @@ label{
 }
 .col-12{
     padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
 }
 .errorMessage{
     color: red;
@@ -59,6 +56,4 @@ label{
 .borderRed{
     border: red 1px solid; 
 }
-.radioMessage{
-margin-left: 316px;
-}
+

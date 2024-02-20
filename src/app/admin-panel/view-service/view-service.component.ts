@@ -12,16 +12,21 @@ import { AddService } from 'src/app/add.service';
 export class ViewServiceComponent {
   id: any;
   userData: any;
-  searchText:any;
+  searchText: any;
+  showErrorMessage: boolean = false;
 
   constructor(private addService: AddService,
     private route: Router,
     private router: ActivatedRoute,
-    private toastr:ToastrService
+    private toastr: ToastrService
   ) { }
   ngOnInit() {
-    this.loadVehicleService();
-    this.id = this.router.snapshot.params['id'];
+    if (this.loadVehicleService() == null) {
+      this.showErrorMessage = true;
+    }else{
+      this.loadVehicleService();
+      this.id = this.router.snapshot.params['id'];
+    }
   }
   loadVehicleService() {
     this.addService.getVehicleService().subscribe((res: any) => {
@@ -30,7 +35,7 @@ export class ViewServiceComponent {
     });
   }
 
-  editService(id: any){
+  editService(id: any) {
     this.route.navigate(['/edit-service', id]);
   }
 
@@ -41,7 +46,7 @@ export class ViewServiceComponent {
     })
   }
 
-  details(id:any) {
-    this.route.navigate(['/view-service-details',id]);
+  details(id: any) {
+    this.route.navigate(['/view-service-details', id]);
   }
 }

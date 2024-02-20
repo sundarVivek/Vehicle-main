@@ -3,6 +3,9 @@
     <div class="icon">
         <img src="assets\images\yamaha-logo-3860.png" width="400" height="400" class="img-fluid" alt="Phone image">
       </div>
+      <div *ngIf="this.loading">
+        <app-loading></app-loading>
+      </div>
     <div class="cardContainer">
         <div class="card gradient-custom-2"  routerLink="/admin-login" cardValue="1">
             <div class="container">

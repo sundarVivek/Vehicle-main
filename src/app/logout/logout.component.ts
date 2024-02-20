@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent {
-
   isOpen: boolean = false;
   modalComponent: any;
+  username:string='Sundar';
   constructor(private route: Router) { }
   ngOnInit() {
   }

@@ -13,9 +13,10 @@ export class AdminLoginComponent {
   adminLogin!: FormGroup;
   errorMessage: any;
   submitted=false;
+  loading:boolean=false;
   constructor(private route: Router,
     private adminService: AdminService,
-    private fb: FormBuilder,
+     private fb: FormBuilder,
     private toastr: ToastrService) { }
   ngOnInit() {
     this.adminLogin = this.fb.group({
@@ -25,6 +26,7 @@ export class AdminLoginComponent {
   }
   onSubmit() {
     this.submitted=true;
+    this.loading=true;
     if (this.adminLogin.valid) {
       this.adminService.getAdmin().subscribe((result: any) => {
         const admins: any = result.find((a: any) => {

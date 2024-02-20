@@ -27,6 +27,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { GetServiceComponent } from './admin-panel/admin-home/get-service/get-service.component';
 import { SearchServicePipe } from './filters/search-service.pipe';
 import { ViewServiceDetailsComponent } from './admin-panel/admin-home/view-service-details/view-service-details.component';
+import { NoDataFoundComponent } from './errors/no-data-found/no-data-found.component';
+import { LoadingComponent } from './navigation/loading/loading.component';
+import { DerviceSuccessComponent } from './customer-panel/dervice-success/dervice-success.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,9 @@ import { ViewServiceDetailsComponent } from './admin-panel/admin-home/view-servi
     GetServiceComponent,
     SearchServicePipe,
     ViewServiceDetailsComponent,
+    NoDataFoundComponent,
+    LoadingComponent,
+    DerviceSuccessComponent,
   ],
   imports: [
     BrowserModule,

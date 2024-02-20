@@ -26,12 +26,11 @@
                 <!-- Submit button -->
                 <span class="error-message" *ngIf="submitted&&loginForm.invalid">Please provide valid credentials </span>
                 <div class="submitbtn">
-                    <button type="submit" class="gradient-custom-2 loginBtn">LOGIN</button>
+                    <button type="submit" class="gradient-custom-2 loginBtn" [disabled]="this.loading">LOGIN</button>
                 </div>
                 <div *ngIf="errorMessage">
                   <h3 class="danger">{{errorMessage}}</h3>
                 </div>
-          
               </form>
             </div>
           </div>
