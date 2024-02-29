@@ -77,6 +77,13 @@
         </div>
       </div>
     </div>
-  
+    <div class="">
+      <canvas id="myChart" height="100px"></canvas>
+    </div>
+    <select class="dropdown" (change)="updateChart()" [(ngModel)]="filterValue">
+      <option value="Day">Day</option>
+      <option value="Month">Month</option>
+      <option value="Year">Year</option>
+    </select>
   </div>
 </body>

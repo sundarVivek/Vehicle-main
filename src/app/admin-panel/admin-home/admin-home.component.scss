@@ -7,7 +7,7 @@
 
 .container {
     // margin-left: 263px;
-    // margin-top: 142px;
+     margin-top: 142px;
     display: inline-flex;
 }
 
@@ -94,8 +94,12 @@ body {
     margin-bottom: 30px;
     position: absolute;
 }
+#myChart{
+    margin-left: 121px;
+    margin-top: 10px;
+}
+.dropdown{
+    margin-left: 200px;
+    background-color: red;
 
-.chartContainer {
-    margin-left: 263px;
-    width: 500px;
 }
