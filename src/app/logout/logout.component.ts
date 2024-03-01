@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AddService } from '../add.service';
 
 @Component({
   selector: 'app-logout',
@@ -9,14 +10,16 @@ import { Router } from '@angular/router';
 export class LogoutComponent {
   isOpen: boolean = false;
   modalComponent: any;
-  username:string='Sundar';
-  constructor(private route: Router) { }
+  username:string='';
+  id:any;
+  constructor(private route: Router, private addservice:AddService,
+    private router:ActivatedRoute) { }
   ngOnInit() {
+
   }
   yes() {
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
-    this.route.navigate(['/login'])
+   this.addservice.signOut();
+    this.route.navigate(['/select-user'])
   }
 
   openModal(): void {

@@ -44,7 +44,7 @@ export class AdminHomeComponent {
   }
 
   countByStatus(){
-    this.readyForService = this.data.filter((x: any) => x.status === 'ready_for_service').length;
+    this.readyForService = this.data.filter((x: any) => x.status === 'Ready for service').length;
     console.log('Number of required:', this.readyForService);
     this.pendingService = this.data.filter((x: any) => x.status === 'Service in progress').length;
     console.log('Number of required:', this.pendingService);

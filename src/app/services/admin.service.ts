@@ -14,4 +14,7 @@ export class AdminService {
   postAdmin(admin:any) {
    return this.http.post<any>(this.adminWebApi,admin);
   }
+  login(admin:any) {
+    return this.http.post(`${this.adminWebApi}/adminAuthenticate`, admin);
+  }
 }

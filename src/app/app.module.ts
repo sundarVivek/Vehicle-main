@@ -12,7 +12,7 @@ import { AdminHomeComponent } from './admin-panel/admin-home/admin-home.componen
 import { AddServiceComponent } from './admin-panel/admin-home/add-service/add-service.component';
 import { ChangeStatusComponent } from './admin-panel/admin-home/change-status/change-status.component';
 import { ServiceHistoryComponent } from './admin-panel/admin-home/service-history/service-history.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './user/login/register/register.component';
 import { ViewServiceComponent } from './admin-panel/view-service/view-service.component';
 import { EditServiceComponent } from './admin-panel/edit-service/edit-service.component';
@@ -30,6 +30,7 @@ import { ViewServiceDetailsComponent } from './admin-panel/admin-home/view-servi
 import { NoDataFoundComponent } from './errors/no-data-found/no-data-found.component';
 import { LoadingComponent } from './navigation/loading/loading.component';
 import { DerviceSuccessComponent } from './customer-panel/dervice-success/dervice-success.component';
+import { AuthInterceptor } from './guards/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,13 @@ import { DerviceSuccessComponent } from './customer-panel/dervice-success/dervic
     ToastrModule.forRoot(),
     ],
 
-  providers: [],
+  providers: [
+    {
+    provide:HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

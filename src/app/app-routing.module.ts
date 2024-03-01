@@ -15,14 +15,16 @@ import { AdminLoginComponent } from './admin-panel/admin-login/admin-login.compo
 import { LogoutComponent } from './logout/logout.component';
 import { GetServiceComponent } from './admin-panel/admin-home/get-service/get-service.component';
 import { DerviceSuccessComponent } from './customer-panel/dervice-success/dervice-success.component';
+import { AuthGuard } from './guards/auth.guard';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'select-user', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'track-vehicle/:id', component: TrackVehicleComponent },
+  { path: 'track-vehicle/:id', component: TrackVehicleComponent,canActivate: [AuthGuard] },
   { path: 'success', component: DerviceSuccessComponent },
-  { path: 'admin-home', component: AdminHomeComponent },
+  { path: 'admin-home/:id', component: AdminHomeComponent,canActivate: [AuthGuard] },
   { path: 'admin-reg', component: AdminRegistrationComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: 'add-service', component: AddServiceComponent },
@@ -34,7 +36,8 @@ const routes: Routes = [
   { path: 'view-service/:id', component: ViewServiceComponent },
   { path: 'edit-service/:id', component: EditServiceComponent },
   { path: 'select-user', component: SelectUserComponent },
-  { path: 'logout', component: LogoutComponent }
+  { path: 'logout', component: LogoutComponent },
+  { path: 'header', component: HeaderComponent }
 ];
 
 @NgModule({

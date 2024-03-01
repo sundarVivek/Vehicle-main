@@ -18,7 +18,10 @@ export class LoginComponent {
   customerId:any;
   loading:boolean=false;
 
-  constructor(private fb: FormBuilder, private addService: AddService, private route: Router, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, 
+    private addService: AddService, 
+    private route: Router,
+     private toastr: ToastrService,) { }
   ngOnInit() {
     this.loginForm = this.fb.group({
       customer_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -31,16 +34,14 @@ export class LoginComponent {
 
   onSubmit() {
     console.log("vahga", this.loginForm.value);
-    this.loading=true;
     if (this.loginForm.valid) {
       this.addService.login(this.loginForm.value).subscribe(
         (res: any) => {
           this.customerId=res.id;
+          this.addService.storeToken(res.token);
           console.log(res);
           if (this.loginForm.controls?.['VehilceNo'].value==res.vehilceNo&&this.loginForm.controls?.['customer_name'].value==res.customer_name) {
             this.toastr.success('Login successful');
-            localStorage.setItem('username',this.loginForm.value.customer_name);
-            localStorage.setItem('password',this.loginForm.value.VehilceNo)
             this.route.navigate(['/track-vehicle',this.customerId])
           }
         },
