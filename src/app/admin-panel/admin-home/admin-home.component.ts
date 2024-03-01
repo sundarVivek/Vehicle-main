@@ -10,6 +10,12 @@ import { AddService } from 'src/app/add.service';
 export class AdminHomeComponent {
   constructor(private addService: AddService) { }
   chart: any = [];
+    Label:string[]=['Mon','Tues','Wed','Thur','Fri'];
+  // dayLabel:string[]=['Mon','Tues','Wed','Thur','Fri'];
+  monthLabel:string[]=['Jan','Feb','Mar','April','May','June','July','Aug','Sep','Oct','Nov','Dec'];
+  // yearLabel:number[]=[2021,2022,2023,2024];
+  dayData:number[]=[10,20,30,40,50];
+  filterValue:string='';
   readyForService: number = 0;
   pendingService: number = 0;
   readyForDelivery:number=0;
@@ -17,30 +23,12 @@ export class AdminHomeComponent {
   data: any = [];
 
   ngOnInit() {
+    this.generateChart();
     this.addService.getVehicleService().subscribe((res: any) => {
       this.data = res;
       this.countByStatus();
     });
-    this.chart = new Chart('canvas', {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
+    
   }
 
   countByStatus(){
@@ -53,7 +41,41 @@ export class AdminHomeComponent {
     this.completedService = this.data.length;
     console.log('Number of required:', this.completedService);
   }
-
+generateChart(){
+  this.chart = document.getElementById('myChart');
+  new Chart(this.chart, {
+    type: 'bar',
+    data: {
+      // labels: ['Jan','Feb','Mar','April','May','June','July','Aug','Sep','Oct','Nov','Dec'],
+      labels:this.Label,
+      datasets: [{
+        label: '# of services',
+        data:this.dayData,
+        // data: ['10','20','30','40','50'],
+      backgroundColor: 'brown',
+      borderColor:'black',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  
+}
+updateChart() {
+  alert(this.filterValue);
+  console.log('filter value',this.filterValue)
+  if(this.filterValue==='Month'){
+    this.Label=this.monthLabel;
+    console.log(this.Label);
+    this.generateChart();
+  }
+}
 }
 
 
