@@ -17,15 +17,15 @@ export class HeaderComponent {
   ngOnInit(){
     this.id = this.router.snapshot.paramMap.get('id');
     console.log(this.id)
-    this.addService.getVehicleServiceById(this.id).subscribe(
-      (result) => {
-       console.log(result);
-       this.username = result.customer_name;
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
+    // this.addService.getVehicleServiceById(this.id).subscribe(
+    //   (result) => {
+    //    console.log(result);
+    //    this.username = result.customer_name;
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching data:', error);
+    //   }
+    // );
   }
 
 }

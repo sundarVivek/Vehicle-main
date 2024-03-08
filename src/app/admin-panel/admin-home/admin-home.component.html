@@ -12,10 +12,10 @@
               Today
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Day</a></li>
-              <li><a class="dropdown-item" href="#">Week</a></li>
-              <li><a class="dropdown-item" href="#">Month</a></li>
-              <li><a class="dropdown-item" href="#">Year</a></li>
+              <li><a class="dropdown-item" (click)="filterDataByToday()">Today</a></li>
+              <li><a class="dropdown-item" (click)="filterDataByThisWeek()">Week</a></li>
+              <li><a class="dropdown-item" (click)="filterDataByThisMonth()">Month</a></li>
+              <li><a class="dropdown-item" (click)="filterDataByThisYear()">Year</a></li>
             </ul>
           </div>
           <h3 id="text">Ready for service</h3>
@@ -77,13 +77,16 @@
         </div>
       </div>
     </div>
-    <div class="">
-      <canvas id="myChart" height="100px"></canvas>
+    <div class="chartContainer">
+      <canvas id="myChart"></canvas>
     </div>
-    <select class="dropdown" (change)="updateChart()" [(ngModel)]="filterValue">
-      <option value="Day">Day</option>
-      <option value="Month">Month</option>
-      <option value="Year">Year</option>
-    </select>
+    <div class="dropdown">
+      <label class="label">Filter</label>
+      <select class="dropdownSelect" (change)="updateChart()">
+        <option value="Day">Day</option>
+        <option value="Month">Month</option>
+        <option value="Year">Year</option>
+      </select>
+    </div>
   </div>
 </body>
