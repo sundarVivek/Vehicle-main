@@ -8,14 +8,13 @@
           <!-- Example single danger button -->
           <div class="btn-group">
             <button type="button" class="btn btn-danger btn-sm dropdown-toggle btnDrpdown" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Today
+              aria-expanded="false">Overall
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" (click)="filterDataByToday()">Today</a></li>
-              <li><a class="dropdown-item" (click)="filterDataByThisWeek()">Week</a></li>
-              <li><a class="dropdown-item" (click)="filterDataByThisMonth()">Month</a></li>
-              <li><a class="dropdown-item" (click)="filterDataByThisYear()">Year</a></li>
+              <li><a class="dropdown-item" [class.active]="currentSelection === 'Today'" (click)="filterDataByToday()">Today</a></li>
+              <li><a class="dropdown-item" [class.active]="currentSelection === 'Week'" (click)="filterDataByThisWeek()">Week</a></li>
+              <li><a class="dropdown-item" [class.active]="currentSelection === 'Month'" (click)="filterDataByThisMonth()">Month</a></li>
+              <li><a class="dropdown-item" [class.active]="currentSelection === 'Year'" (click)="filterDataByThisYear()">Year</a></li>
             </ul>
           </div>
           <h3 id="text">Ready for service</h3>
