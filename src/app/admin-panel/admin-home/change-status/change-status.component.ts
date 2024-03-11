@@ -24,6 +24,7 @@ export class ChangeStatusComponent {
   serviceType: any;
   getId: any;
   updatedResult: any;
+  statusChangeData:any;
   constructor(private addService: AddService,
     private router: ActivatedRoute,
     private fb: FormBuilder,
@@ -33,7 +34,8 @@ export class ChangeStatusComponent {
 
   ngOnInit() {
     this.statusForm = this.fb.group({
-      status: ['Ready for service', Validators.required]
+      status: ['Ready for service', Validators.required],
+      status_change_date: [new Date().toISOString().split('T')[0]],
     })
     this.getId = this.router.snapshot.paramMap.get('id');
     this.addService.getVehicleServiceById(this.getId).subscribe(
@@ -60,7 +62,9 @@ export class ChangeStatusComponent {
     this.addService.getVehicleServiceById(this.getId).subscribe(
       (result) => {
         result.status = this.statusForm.value.status;
+        result.status_change_date = this.statusForm.value.status_change_date;
         this.updatedResult = result;
+        console.log(this.updatedResult);
         this.addService.putVehicleService(this.getId, this.updatedResult).subscribe((res: any) => {
           this.toastr.success('Status has changed successfully');
         });

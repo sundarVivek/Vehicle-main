@@ -35,6 +35,7 @@ export class AdminLoginComponent {
         (res: any) => {
           this.adminId=res.id;
           this.addService.storeToken(res.token);
+          localStorage.setItem('role','admin');
           console.log(res);
           if (this.adminLogin.controls?.['username'].value==res.username&&
           this.adminLogin.controls?.['password'].value==res.password) {

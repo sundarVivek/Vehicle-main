@@ -20,12 +20,12 @@ export class AdminHomeComponent {
   readyForDelivery: number = 0;
   completedService: number = 0;
   data: any = [];
-  filteredData: any = [];
-  filteredDateMonth: any ;
-  filterdedMonth:any=[];
-  currentMonth:any;
-  currentSelection:string='';
-
+  filteredData:any=[];
+  // filteredData: any = [];
+  // filteredDataForServiceInProgress: any = [];
+  // filteredDataForReadyForDelivery: any = [];
+  currentSelection: string = '';
+  statusValue: string = '';
   ngOnInit() {
     this.generateChart();
     this.addService.getVehicleService().subscribe((res: any) => {
@@ -80,30 +80,48 @@ export class AdminHomeComponent {
   }
 
   filterDataByToday() {
-    this.currentSelection='Today';
-   console.log(this.currentSelection);
+    this.currentSelection = 'Today';
+    console.log(this.currentSelection);
     const today = new Date().toISOString().split('T')[0];
-    this.filteredData = this.data.filter((item: any) => item.appointment_date.split('T')[0] === today);
-    this.readyForService = this.filteredData.filter((x: any) => x.status === 'Ready for service').length;
+    if(this.data.status==='Ready for service'){
+      this.filteredData = this.data.filter((item: any) => item.appointment_date.split('T')[0] === today);
+      this.readyForService = this.filteredData.filter((x: any) => x.status === 'Ready for service').length;
+    }else if(this.data.status==='Service in progress'){
+      this.filteredData = this.data.filter((item: any) => item.status_change_date.split('T')[0] === today);
+      this.pendingService = this.filteredData.filter((x: any) => x.status === 'Service in progress').length;
+    }else if(this.data.status==='Ready for delivery'){
+      this.filteredData = this.data.filter((item: any) => item.status_change_date.split('T')[0] === today);
+      this.pendingService = this.filteredData.filter((x: any) => x.status === 'Ready for delivery').length;
+    }
   }
 
   filterDataByThisWeek() {
-    this.currentSelection='Week';
+    this.currentSelection = 'Week';
     const today = new Date();
     const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay())).toISOString().split('T')[0];
     const lastDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6)).toISOString().split('T')[0];
-    this.filteredData = this.data.filter((item: any) => item.appointment_date.split('T')[0] >=
+    if(this.data.status==='Ready for service'){
+      this.filteredData = this.data.filter((item: any) => item.appointment_date.split('T')[0] >=
       firstDayOfWeek && item.appointment_date.split('T')[0] <= lastDayOfWeek);
     this.readyForService = this.filteredData.filter((x: any) => x.status === 'Ready for service').length;
+    }else if(this.data.status==='Service in progress'){
+      this.filteredData = this.data.filter((item: any) => item.status_change_date.split('T')[0] >=
+      firstDayOfWeek && item.appointment_date.split('T')[0] <= lastDayOfWeek);
+    this.readyForService = this.filteredData.filter((x: any) => x.status === 'Service in progress').length;
+    }else if(this.data.status==='Ready for delivery'){
+      this.filteredData = this.data.filter((item: any) => item.status_change_date.split('T')[0]>=
+      firstDayOfWeek && item.appointment_date.split('T')[0] <= lastDayOfWeek);
+    this.readyForService = this.filteredData.filter((x: any) => x.status === 'Service in progress').length;
+    }
   }
 
   filterDataByThisMonth() {
-    this.currentSelection='Month';
-     this.filteredData=this.data.filter((item:any)=> new Date(item.appointment_date).getMonth()===new Date().getMonth());
-     this.readyForService = this.filteredData.filter((x: any) => x.status === 'Ready for service').length;
+    this.currentSelection = 'Month';
+    this.filteredData = this.data.filter((item: any) => new Date(item.appointment_date).getMonth() === new Date().getMonth());
+    this.readyForService = this.filteredData.filter((x: any) => x.status === 'Ready for service').length;
   }
   filterDataByThisYear() {
-    this.currentSelection='Year';
+    this.currentSelection = 'Year';
     const today = new Date();
     const startOfYear = new Date(today.getFullYear(), 0, 1).toISOString().split('T')[0];
     console.log(startOfYear);
@@ -115,8 +133,8 @@ export class AdminHomeComponent {
     console.log(this.filteredData);
     this.readyForService = this.filteredData.filter((x: any) => x.status === 'Ready for service').length;
   }
-  filterBYDatWeekMonthYear(value:any){
-    switch(value) {
+  filterBYDatWeekMonthYear(value: any) {
+    switch (value) {
       case 'Today':
         this.filterDataByToday();
         break;

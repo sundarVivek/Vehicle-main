@@ -39,6 +39,7 @@ export class LoginComponent {
         (res: any) => {
           this.customerId=res.id;
           this.addService.storeToken(res.token);
+          localStorage.setItem('role','customer')
           console.log(res);
           if (this.loginForm.controls?.['VehilceNo'].value==res.vehilceNo&&this.loginForm.controls?.['customer_name'].value==res.customer_name) {
             this.toastr.success('Login successful');

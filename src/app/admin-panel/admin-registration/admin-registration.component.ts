@@ -10,45 +10,46 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class AdminRegistrationComponent {
   adminRegister!: FormGroup;
-  submitted= false;
+  submitted = false;
   constructor(private fb: FormBuilder,
-     private adminService:AdminService,
-     private route:Router) { }
+    private adminService: AdminService,
+    private route: Router) { }
   ngOnInit() {
     this.adminRegister = this.fb.group({
       username: ['', Validators.required],
       email: ['', Validators.email],
-      password: ['', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(10)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)])],
       confirm_password: ['', Validators.required],
       phone: ['', Validators.required],
+      role: ['admin']
     },
-    { validator: this.passwordMatchValidator }
+      { validator: this.passwordMatchValidator }
     );
   }
-  get f(){
+  get f() {
     return this.adminRegister.controls;
   }
-   // Function to check if passwords match
-    passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  // Function to check if passwords match
+  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirm_password');
     // Check if both passwords are present and match
     return password && confirmPassword && password.value !== confirmPassword.value
-      ? { 'passwordMismatch': true }: null;
+      ? { 'passwordMismatch': true } : null;
   }
 
   onSubmit() {
-    if(this.adminRegister.valid){
+    if (this.adminRegister.valid) {
       this.adminService.postAdmin(this.adminRegister.value).subscribe(
-        (result:any)=>{
+        (result: any) => {
           console.log(result);
           alert('registration successful');
-       this.route.navigate(['/admin-login']);
+          this.route.navigate(['/admin-login']);
         }
       ),
-      (error:any) => {
-        console.error(error);
-    };
+        (error: any) => {
+          console.error(error);
+        };
     }
   }
 }

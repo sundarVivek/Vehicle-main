@@ -31,6 +31,8 @@ import { NoDataFoundComponent } from './errors/no-data-found/no-data-found.compo
 import { LoadingComponent } from './navigation/loading/loading.component';
 import { DerviceSuccessComponent } from './customer-panel/dervice-success/dervice-success.component';
 import { AuthInterceptor } from './guards/auth.interceptor';
+//material
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { AuthInterceptor } from './guards/auth.interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    //material
+    MatFormFieldModule,
     ],
 
   providers: [

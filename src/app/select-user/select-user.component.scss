@@ -12,9 +12,11 @@ body {
     color: white;
     margin: 50px 100px 50px 100px;
     border: 1px solid black;
+    box-shadow: rgba(232, 185, 185, 0.15) 0px 3px 3px 0px;
 }
 
 .card:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
     transform: scale(1.1);
     /* Adjust the scale factor for the desired zoom level */
     cursor: pointer;

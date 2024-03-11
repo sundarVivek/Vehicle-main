@@ -11,6 +11,9 @@ export class AdminService {
   getAdmin() {
    return this.http.get<any>(this.adminWebApi);
   }
+  getAdminById(id: any) {
+    return this.http.get<any>(`${this.adminWebApi}/${id}`);
+  }
   postAdmin(admin:any) {
    return this.http.post<any>(this.adminWebApi,admin);
   }

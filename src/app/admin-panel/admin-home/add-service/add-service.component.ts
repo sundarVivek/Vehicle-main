@@ -28,6 +28,7 @@ export class AddServiceComponent {
       VehicleNo: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$')])],
       model_name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       appointment_date: [new Date().toISOString().split('T')[0], Validators.required],
+      status_change_date: [new Date().toISOString().split('T')[0]],
       service_type: ['', Validators.required],
       radiobutton: ['', Validators.required],
       status: ['Ready for service'],
