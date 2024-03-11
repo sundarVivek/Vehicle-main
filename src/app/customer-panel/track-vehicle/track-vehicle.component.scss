@@ -67,3 +67,17 @@ justify-content: center;
   align-items: center;
   justify-content: center;
 }
+@media only screen and (max-width: 600px) {
+ body{
+  width: 100%;
+  position: fixed;
+ }
+ .text{
+  width: 180px;
+ }
+ .image {
+  width: 118px;
+  margin-top: 49px;
+  margin-left: 29px;
+}
+}

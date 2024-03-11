@@ -11,26 +11,22 @@ import { AddService } from 'src/app/add.service';
 export class AdminHomeComponent {
   constructor(private addService: AddService) { }
   chart: any = [];
-  Label: string[] = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri'];
-  monthLabel: string[] = ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  dayData: number[] = [10, 20, 30, 40, 50];
-  filterValue: string = '';
+  Label: string[] = ['Ready for service', 'Service in progress', 'Ready for delivery', 'Delivered'];
+  // monthLabel: string[] = ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  dayData: number[] = [];
+  // filterValue: string = '';
   readyForService: number = 0;
   pendingService: number = 0;
   readyForDelivery: number = 0;
   completedService: number = 0;
   data: any = [];
   filteredData:any=[];
-  // filteredData: any = [];
-  // filteredDataForServiceInProgress: any = [];
-  // filteredDataForReadyForDelivery: any = [];
-  currentSelection: string = '';
-  statusValue: string = '';
+  
   ngOnInit() {
-    this.generateChart();
     this.addService.getVehicleService().subscribe((res: any) => {
       this.data = res;
       this.countByStatus();
+      this.generateChart();
     });
   }
 
@@ -43,6 +39,7 @@ export class AdminHomeComponent {
     console.log('Number of required:', this.readyForDelivery);
     this.completedService = this.data.length;
     console.log('Number of required:', this.completedService);
+    this.dayData=[this.readyForService,this.pendingService,this.readyForDelivery];
   }
   generateChart() {
     this.chart = document.getElementById('myChart');
@@ -70,18 +67,16 @@ export class AdminHomeComponent {
     });
   }
   updateChart() {
-    alert(this.filterValue);
-    console.log('filter value', this.filterValue)
-    if (this.filterValue === 'Month') {
-      this.Label = this.monthLabel;
-      console.log(this.Label);
-      this.generateChart();
-    }
+    // alert(this.filterValue);
+    // console.log('filter value', this.filterValue)
+    // if (this.filterValue === 'Month') {
+    //   this.Label = this.monthLabel;
+    //   console.log(this.Label);
+    //   this.generateChart();
+    // }
   }
 
   filterDataByToday() {
-    this.currentSelection = 'Today';
-    console.log(this.currentSelection);
     const today = new Date().toISOString().split('T')[0];
     if(this.data.status==='Ready for service'){
       this.filteredData = this.data.filter((item: any) => item.appointment_date.split('T')[0] === today);
@@ -96,7 +91,6 @@ export class AdminHomeComponent {
   }
 
   filterDataByThisWeek() {
-    this.currentSelection = 'Week';
     const today = new Date();
     const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay())).toISOString().split('T')[0];
     const lastDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6)).toISOString().split('T')[0];
@@ -116,12 +110,10 @@ export class AdminHomeComponent {
   }
 
   filterDataByThisMonth() {
-    this.currentSelection = 'Month';
     this.filteredData = this.data.filter((item: any) => new Date(item.appointment_date).getMonth() === new Date().getMonth());
     this.readyForService = this.filteredData.filter((x: any) => x.status === 'Ready for service').length;
   }
   filterDataByThisYear() {
-    this.currentSelection = 'Year';
     const today = new Date();
     const startOfYear = new Date(today.getFullYear(), 0, 1).toISOString().split('T')[0];
     console.log(startOfYear);
